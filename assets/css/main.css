@@ -733,7 +733,7 @@ section,
   background: transparent;
 /*  border: 2px solid var(--default-color);*/
   color: var(--default-color);
-  padding: 12px 30px;
+  padding: 0 10px;
   font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
