@@ -729,6 +729,30 @@ section,
   margin-bottom: 20px;
 }
 
+.resume .download-resume-btn {
+  background: transparent;
+/*  border: 2px solid var(--default-color);*/
+  color: var(--default-color);
+  padding: 12px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resume .download-resume-btn:hover {
+/*  background: var(--accent-color);*/
+  color: var(--accent-color);
+}
+
+.resume .download-resume-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 .resume .resume-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
