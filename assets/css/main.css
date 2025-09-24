@@ -730,21 +730,31 @@ section,
 }
 
 .resume .download-resume-btn {
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.resume .download-resume-btn i {
+  margin-right: 10px;
+}
+
+.resume .download-resume-btn {
   background: transparent;
-/*  border: 2px solid var(--default-color);*/
-  color: var(--default-color);
-  padding: 0 10px;
-  font-size: 20px;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 4.8px 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  border-radius: 25px;
+/*  border-radius: 25px;*/
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .resume .download-resume-btn:hover {
-/*  background: var(--accent-color);*/
-  color: var(--accent-color);
+  background: var(--accent-color);
+  color: #fff;
 }
 
 .resume .download-resume-btn:disabled {
