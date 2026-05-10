@@ -1,46 +1,46 @@
 /**
-* Template Name: iPortfolio
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Updated: Jun 29 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+ * CND Portfolio — main.js
+ * Base: iPortfolio (BootstrapMade)
+ * Updated for redesign
+ */
 
-(function() {
+(function () {
   "use strict";
 
   /**
-   * Header toggle
+   * Header toggle (mobile)
    */
-  const headerToggleBtn = document.querySelector('.header-toggle');
+  const headerToggleBtn = document.querySelector(".header-toggle");
 
   function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
+    document.querySelector("#header").classList.toggle("header-show");
+    headerToggleBtn.classList.toggle("bi-list");
+    headerToggleBtn.classList.toggle("bi-x");
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
+
+  if (headerToggleBtn) {
+    headerToggleBtn.addEventListener("click", headerToggle);
+  }
 
   /**
-   * Hide mobile nav on same-page/hash links
+   * Hide mobile nav on same-page links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.header-show')) {
+  document.querySelectorAll("#navmenu a").forEach((navmenu) => {
+    navmenu.addEventListener("click", () => {
+      if (document.querySelector(".header-show")) {
         headerToggle();
       }
     });
-
   });
 
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+  document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
+    navmenu.addEventListener("click", function (e) {
       e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      this.parentNode.classList.toggle("active");
+      this.parentNode.nextElementSibling.classList.toggle("dropdown-active");
       e.stopImmediatePropagation();
     });
   });
@@ -48,9 +48,9 @@
   /**
    * Preloader
    */
-  const preloader = document.querySelector('#preloader');
+  const preloader = document.querySelector("#preloader");
   if (preloader) {
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       preloader.remove();
     });
   }
@@ -58,200 +58,110 @@
   /**
    * Scroll top button
    */
-  let scrollTop = document.querySelector('.scroll-top');
+  const scrollTop = document.querySelector(".scroll-top");
 
   function toggleScrollTop() {
     if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+      window.scrollY > 100
+        ? scrollTop.classList.add("active")
+        : scrollTop.classList.remove("active");
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+  if (scrollTop) {
+    scrollTop.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  window.addEventListener("load", toggleScrollTop);
+  document.addEventListener("scroll", toggleScrollTop);
 
   /**
-   * Animation on scroll function and init
+   * AOS init
    */
   function aosInit() {
     AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
+      duration: 500,
+      easing: "ease-out",
       once: true,
-      mirror: false
+      mirror: false,
     });
   }
-  window.addEventListener('load', aosInit);
+  window.addEventListener("load", aosInit);
 
   /**
-   * Init typed.js
+   * Typed.js
    */
-  const selectTyped = document.querySelector('.typed');
+  const selectTyped = document.querySelector(".typed");
   if (selectTyped) {
-    let typed_strings = selectTyped.getAttribute('data-typed-items');
-    typed_strings = typed_strings.split(',');
-    new Typed('.typed', {
+    let typed_strings = selectTyped.getAttribute("data-typed-items");
+    typed_strings = typed_strings.split(",");
+    new Typed(".typed", {
       strings: typed_strings,
       loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
+      typeSpeed: 80,
+      backSpeed: 40,
+      backDelay: 2200,
     });
   }
 
   /**
-   * Initiate Pure Counter
+   * PureCounter
    */
   new PureCounter();
 
   /**
-   * Animate the skills items on reveal
+   * GLightbox
    */
-  let skillsAnimation = document.querySelectorAll('.skills-animation');
-  skillsAnimation.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
-    });
-  });
+  const glightbox = GLightbox({ selector: ".glightbox" });
 
   /**
-   * Initiate glightbox
+   * Isotope layout + filters
+   * (No load-more needed — advisorship is its own section now)
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  /**
-   * Init isotope layout and filters with Load More functionality
-   */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+  document.querySelectorAll(".isotope-layout").forEach(function (isotopeItem) {
+    let layout = isotopeItem.getAttribute("data-layout") ?? "masonry";
+    let filter = isotopeItem.getAttribute("data-default-filter") ?? "*";
+    let sort = isotopeItem.getAttribute("data-sort") ?? "original-order";
     let initIsotope;
-    
-    // Load More variables
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const allHiddenItems = isotopeItem.querySelectorAll('.portfolio-item.hidden-item');
-    const itemsToShow = 3;
-    let currentFilter = filter;
 
-    // Initialize Isotope after images are loaded
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
-
-      updateLoadMoreButton();
-    });
-
-    // Filter functionality
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filterBtn) {
-      filterBtn.addEventListener('click', function() {
-        // Update active filter class
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        
-        // Get new filter
-        const newFilter = this.getAttribute('data-filter');
-        currentFilter = newFilter === '*' ? '*' : newFilter.replace('.filter-', '');
-        
-        // Apply isotope filter
-        initIsotope.arrange({
-          filter: newFilter
-        });
-        
-        updateLoadMoreButton();
-        
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
-    });
-
-    // Load More functionality
-    if (loadMoreBtn && allHiddenItems.length > 0) {
-      loadMoreBtn.addEventListener('click', function() {
-        const relevantHiddenItems = getRelevantHiddenItems();
-        const stillHidden = relevantHiddenItems.filter(item => item.classList.contains('hidden-item'));
-        const itemsToReveal = stillHidden.slice(0, itemsToShow);
-        
-        // Show items
-        itemsToReveal.forEach((item) => {
-          item.classList.remove('hidden-item');
-        });
-        
-        // Update Isotope - gentler approach
-        initIsotope.layout();
-        
-        updateLoadMoreButton();
-        
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      });
-    }
-
-    // Helper Functions
-    function getRelevantHiddenItems() {
-      if (currentFilter === '*') {
-        return Array.from(allHiddenItems);
-      } else {
-        return Array.from(allHiddenItems).filter(item => 
-          item.classList.contains('filter-' + currentFilter)
+    imagesLoaded(
+      isotopeItem.querySelector(".isotope-container"),
+      function () {
+        initIsotope = new Isotope(
+          isotopeItem.querySelector(".isotope-container"),
+          {
+            itemSelector: ".isotope-item",
+            layoutMode: layout,
+            filter: filter,
+            sortBy: sort,
+          }
         );
       }
-    }
+    );
 
-    function updateLoadMoreButton() {
-      if (!loadMoreBtn) return;
-      
-      const relevantHiddenItems = getRelevantHiddenItems();
-      const stillHidden = relevantHiddenItems.filter(item => item.classList.contains('hidden-item'));
-      const remainingItems = stillHidden.length;
-      
-      if (remainingItems <= 0) {
-        loadMoreBtn.style.display = 'none';
-      } else {
-        loadMoreBtn.style.display = 'block';
-        loadMoreBtn.disabled = false;
-        loadMoreBtn.textContent = remainingItems <= itemsToShow 
-          ? `Show Remaining ${remainingItems}`
-          : `Show More (${remainingItems} remaining)`;
-      }
-    }
-
-    // Initialize load more button state on page load
-    if (loadMoreBtn) {
-      updateLoadMoreButton();
-    }
+    isotopeItem.querySelectorAll(".isotope-filters li").forEach(function (filterBtn) {
+      filterBtn.addEventListener("click", function () {
+        isotopeItem
+          .querySelector(".isotope-filters .filter-active")
+          .classList.remove("filter-active");
+        this.classList.add("filter-active");
+        initIsotope.arrange({ filter: this.getAttribute("data-filter") });
+        if (typeof aosInit === "function") aosInit();
+      });
+    });
   });
 
   /**
-   * Init swiper sliders
+   * Swiper
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
-
       if (swiperElement.classList.contains("swiper-tab")) {
         initSwiperWithCustomPagination(swiperElement, config);
       } else {
@@ -259,67 +169,70 @@
       }
     });
   }
-
   window.addEventListener("load", initSwiper);
 
   /**
-   * Correct scrolling position upon page load for URLs containing hash links.
+   * Hash scroll fix on page load
    */
-  window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+  window.addEventListener("load", function () {
+    if (window.location.hash && document.querySelector(window.location.hash)) {
+      setTimeout(() => {
+        const section = document.querySelector(window.location.hash);
+        const scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+        window.scrollTo({
+          top: section.offsetTop - parseInt(scrollMarginTop),
+          behavior: "smooth",
+        });
+      }, 100);
     }
   });
 
   /**
-   * Navmenu Scrollspy
+   * Navmenu scrollspy
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  const navmenulinks = document.querySelectorAll(".navmenu a");
 
   function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
+    navmenulinks.forEach((navmenulink) => {
       if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
+      const section = document.querySelector(navmenulink.hash);
       if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
+      const position = window.scrollY + 200;
+      if (
+        position >= section.offsetTop &&
+        position <= section.offsetTop + section.offsetHeight
+      ) {
+        document
+          .querySelectorAll(".navmenu a.active")
+          .forEach((link) => link.classList.remove("active"));
+        navmenulink.classList.add("active");
       } else {
-        navmenulink.classList.remove('active');
+        navmenulink.classList.remove("active");
       }
-    })
+    });
   }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
 
+  window.addEventListener("load", navmenuScrollspy);
+  document.addEventListener("scroll", navmenuScrollspy);
+
+  /**
+   * Age calculator
+   */
   function calculateAge(birthDateString) {
     const today = new Date();
     const birthDate = new Date(birthDateString);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    const dayDiff = today.getDate() - birthDate.getDate();
-
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
     return age;
   }
 
-  // Replace content inside element with id="age"
   document.addEventListener("DOMContentLoaded", () => {
     const ageElement = document.getElementById("age");
     if (ageElement) {
-      ageElement.textContent = calculateAge("2000-01-31"); // Change date as needed
+      ageElement.textContent = calculateAge("2000-01-31");
     }
   });
 })();

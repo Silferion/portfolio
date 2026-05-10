@@ -1,17 +1,20 @@
-document.getElementById('downloadResume').addEventListener('click', function() {
-    // File path
-    const filePath = 'assets/resume/Diza, Clark Neilsen Tan RESUME.pdf';
-    
-    // Create a temporary link element
+document.addEventListener('DOMContentLoaded', function () {
+  const filePath = 'assets/resume/Diza, Clark Neilsen Tan RESUME.pdf';
+  const fileName = 'Diza_Clark_Neilsen_Tan_RESUME.pdf';
+
+  function triggerDownload() {
     const link = document.createElement('a');
     link.href = filePath;
     link.target = '_blank';
-    link.download = 'Diza_Clark_Neilsen_Tan_RESUME.pdf'; // Name of downloaded file
+    link.download = fileName;
     document.body.appendChild(link);
-    
-    // Trigger download
     link.click();
-    
-    // Remove the temporary link
     document.body.removeChild(link);
-  });
+  }
+
+  const btn1 = document.getElementById('downloadResume');
+  const btn2 = document.getElementById('downloadResume2');
+
+  if (btn1) btn1.addEventListener('click', triggerDownload);
+  if (btn2) btn2.addEventListener('click', triggerDownload);
+});
