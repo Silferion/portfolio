@@ -31,7 +31,7 @@ const portfolioData = {
     client: 'Physics Pharmaceutical Company',
     type: 'Client Project',
     date: 'March 2025',
-    url: 'https://prms-staging.jcatechsolutions.dev/auth/login',
+    url: 'https://sleelphysicsprms.com',
     description: 'Pharmaceutical Resource Management System',
     fullDescription: 'A sophisticated pharmaceutical resource management platform designed for Physics Pharmaceutical Company. It efficiently handles medicine inventories, medical supplies, and streamlines operations while ensuring compliance and optimized stock management.',
     technologies: ['React.js', 'Next.js', 'Node.js', 'MySQL', 'Docker', 'PHP Laravel', 'REST API', 'Ubuntu Server', 'NGINX', 'API Documentation', 'CI/CD Pipeline', 'GitHub'],
@@ -221,6 +221,72 @@ const portfolioData = {
     repository: 'N/A',
     images: ['ejeepney-connect.jpg'],
     extension: 'jpg'
+  },
+
+  // Current enterprise projects
+  'edxip': {
+    title: 'EDXIP',
+    category: 'Enterprise API Management Platform',
+    client: 'Beacon Solutions, Inc.',
+    type: 'Professional Project',
+    date: '2026 – Present',
+    url: '#',
+    description: 'Enterprise API Management Platform',
+    fullDescription: 'Backend engineering contribution to an enterprise API management platform. Work includes Java and Spring Boot microservices, RESTful API development, Kong Gateway integration, database-backed services, and object-storage integration using MinIO.',
+    technologies: ['Java', 'Spring Boot', 'Kong Gateway', 'PostgreSQL', 'Redis', 'MinIO', 'REST API', 'Docker'],
+    features: [
+      'RESTful backend microservices',
+      'API gateway and Kong plugin integration',
+      'Request validation and business logic',
+      'Database-backed service development',
+      'Object storage microservice development',
+      'API documentation and local integration testing'
+    ],
+    repository: 'N/A',
+    images: [],
+    extension: 'png'
+  },
+  'sss-portal': {
+    title: 'SSS Portal',
+    category: 'Enterprise Portal',
+    client: 'Beacon Solutions, Inc.',
+    type: 'Professional Project',
+    date: '2026 – Present',
+    url: '#',
+    description: 'Enterprise Portal Backend Services',
+    fullDescription: 'Backend engineering contribution to an enterprise portal, focused on Spring Boot services, RESTful API development, request validation, business logic, database interaction, and integration with surrounding services.',
+    technologies: ['Java', 'Spring Boot', 'REST API', 'PostgreSQL'],
+    features: [
+      'RESTful API development',
+      'Request validation',
+      'Business logic implementation',
+      'Database integration',
+      'Microservice integration'
+    ],
+    repository: 'N/A',
+    images: [],
+    extension: 'png'
+  },
+  'dnd-portal': {
+    title: 'DND Portal',
+    category: 'Enterprise Portal',
+    client: 'Beacon Solutions, Inc.',
+    type: 'Professional Project',
+    date: '2026 – Present',
+    url: '#',
+    description: 'Enterprise Portal Backend Services',
+    fullDescription: 'Backend engineering contribution to an enterprise portal, developing and supporting RESTful services, business logic, validation, and integration workflows within a Spring Boot-based environment.',
+    technologies: ['Java', 'Spring Boot', 'REST API', 'PostgreSQL'],
+    features: [
+      'RESTful backend services',
+      'Business logic implementation',
+      'Request validation',
+      'Database interaction',
+      'Service integration'
+    ],
+    repository: 'N/A',
+    images: [],
+    extension: 'png'
   },
 
   // Enhanced Personal Projects (descriptions, tech, features, repository)
@@ -430,4 +496,3 @@ function setupPortfolioLinks() {
     }
   });
 }
-
